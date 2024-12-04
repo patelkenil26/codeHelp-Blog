@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
+
 
 const Header = () => {
-  return (
-    <div className="py-2 border-b-2 border-b-gray-300 drop-shadow-md fixed top-0 inset-x-0 bg-white">
-      <h1 className="font-bold text-3xl uppercase text-center">Codehelp - Blogs</h1>
-    </div>
-  )
-}
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
-export default Header
+  return (
+    <div className="py-4 border-b dark:border-gray-700 bg-white dark:bg-gray-800 shadow-md fixed top-0 inset-x-0 z-10">
+      <div className="flex justify-between items-center px-4">
+        <h1 className="font-bold text-3xl uppercase text-gray-900 dark:text-gray-100">
+          CodeHelp - Blogs
+        </h1>
+        <button
+          onClick={toggleDarkMode}
+          className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-2 rounded"
+        >
+          {darkMode ? "Light Mode" : "Dark Mode"}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Header;
